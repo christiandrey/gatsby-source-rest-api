@@ -5,6 +5,7 @@ exports.sourceNodes = (
 ) => {
   const { createNode } = actions
   const { endpoints } = configOptions
+  const method = configOptions.method || 'GET'
   // Gatsby adds a configOption that's not needed for this plugin, delete it
   delete configOptions.plugins
 
@@ -39,7 +40,7 @@ exports.sourceNodes = (
   const sources = []
   endpoints.forEach(endpoint =>
     sources.push(
-      fetch(`${endpoint}`, {})
+      fetch(`${endpoint}`, { method })
         .then(response => response.json())
         .then(data => {
           Array.isArray(data)
