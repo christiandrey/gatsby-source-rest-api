@@ -12,6 +12,7 @@ exports.sourceNodes = (
   //strips special characters and makes string camelcase
   const customFormat = str => {
     return str
+      .split('?')[0] // Removes query parameters
       .replace(/^.*\/\/[^\/]+/, '') //Removes domain
       .replace(/(?:^\w|[A-Z]|\b\w)/g, word => word.toUpperCase()) //Capitalizes strings
       .replace(/\//g, '') //Removes slashes
